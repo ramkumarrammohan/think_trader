@@ -7,8 +7,8 @@ from db.database import BaseModel
 class Ticker5min(BaseModel):
     created_at = peewee.DateTimeField(default=datetime.datetime.now)
     updated_at = peewee.DateTimeField(default=datetime.datetime.now)
-    script_id = peewee.ForeignKeyField(Script, backref='script', unique=True)
-    # Set the combined unique between 'record_datetime' & 'equity_id
+    script_id = peewee.ForeignKeyField(Script, backref='script')
+    # Note: combined unique between 'record_datetime' & 'script_id is available
     record_datetime = peewee.DateTimeField()
     open_price = peewee.FloatField()
     high_price = peewee.FloatField()

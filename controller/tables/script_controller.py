@@ -1,5 +1,6 @@
 from models.script import Script
 from db.database import atomic_insert
+from utils.pretty_json import print_json
 
 
 class ScriptController():
@@ -34,10 +35,8 @@ class ScriptController():
         if not Script.table_exists():
             print('Script table not found')
             return
-        # get the list of scripts from data_controller & insert into script
+
         data = self.data_controller.get_active_scripts()
-        # pop first item. Since, the first item in the list contains header of csv({'symbol': 'SYMBOL', 'company_name': 'NAME OF COMPANY'})
-        data.pop(0)
         try:
             atomic_insert(Script, data)
         except Exception as err:

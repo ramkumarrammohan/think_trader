@@ -1,4 +1,8 @@
 {
-    "python.pythonPath": "venv/bin/python3.6",
-    "editor.formatOnSave": true
+  "python.pythonPath": "venv/bin/python",
+  "editor.formatOnSave": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "workbench.colorTheme": "Material Theme Darker",
+  "comments.openPanel": "openOnSessionStart"
 }
