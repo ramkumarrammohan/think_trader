@@ -57,10 +57,9 @@ class TickerController():
             return
 
         expected_dt = self.get_expected_last_record_datettime()
-        print('expected_dt: '+expected_dt.strftime(DATE_TIME_FORMAT))
         # get all scripts
         scripts = Script.select(Script.id, Script.symbol,
-                                Script.company_name).where(Script.symbol == 'INFY')  # remove limit before move into production
+                                Script.company_name)  # remove limit before move into production
         # Iterate through scripts and update the ticker data for each script
         for script in scripts:
             print('{}. {}'.format(script.id, script.symbol))
@@ -72,7 +71,11 @@ class TickerController():
             if last_ticker_data:  # check for period that remaining data to be fetched
                 last_updated_at = last_ticker_data[0].record_datetime
                 if last_updated_at == expected_dt:
-                    print('{} already upto date'.format(script.company_name))
+                    print('{} already upto date'.format(script.symbol))
+                    continue
+                elif last_updated_at > expected_dt:
+                    print('{} is having future candle info. Ideally this is not possible. Please report this as bug'
+                          .format(script.company_name))
                     continue
                 else:
                     days_diff = expected_dt - last_updated_at
@@ -107,7 +110,8 @@ class TickerController():
                 converted_dict[ModelLowPriceKey] = value[AlphaLowPriceKey]
                 converted_dict[ModelClosePriceKey] = value[AlphaClosePriceKey]
                 converted_dict[ModelVolumeKey] = value[AlphaVolumeKey]
-                data_source.append(converted_dict)
+                # magic no '0' - used to order by candle datetime
+                data_source.insert(0, converted_dict)
             except Exception as err:
                 print('Exception occured. err'+str(err))
         return data_source
@@ -119,7 +123,7 @@ class TickerController():
             print('Failed to insert records due to exception: '+str(err))
 
     def get_expected_last_record_datettime(self):
-        """ return last candle datetime of the last market day
+        """ returns the last candle datetime of the last market day
         return: datettime obj
         """
         expected_dt = datetime.now()
