@@ -3,6 +3,6 @@
   "editor.formatOnSave": true,
   "code-runner.runInTerminal": true,
   "code-runner.saveFileBeforeRun": true,
-  "workbench.colorTheme": "Material Theme Darker",
+  "workbench.colorTheme": "Default Light+",
   "comments.openPanel": "openOnSessionStart"
 }

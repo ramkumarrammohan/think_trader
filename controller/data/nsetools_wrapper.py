@@ -15,7 +15,7 @@ VolumeKey = 'totalTradedVolume'
 
 class NseWrapper():
     def __init__(self):
-        self.nifty500_list_url = 'https://www.nseindia.com/content/indices/ind_nifty500list.csv'
+        self.nifty_script_list_url = 'https://www.nseindia.com/content/indices/ind_nifty100list.csv'
         self.driver = Nse()
         print(self.driver)
 
@@ -39,7 +39,7 @@ class NseWrapper():
     def get_nifty_500_scripts(self):
         data = []
         try:
-            response = requests.get(self.nifty500_list_url)
+            response = requests.get(self.nifty_script_list_url)
             csvfile = csv.reader(StringIO(response
                                           .content.decode('utf-8')), delimiter=',')
             for line in csvfile:

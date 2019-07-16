@@ -8,6 +8,7 @@ class Script(BaseModel):
     updated_at = peewee.DateTimeField(default=datetime.datetime.now)
     symbol = peewee.CharField(unique=True)
     company_name = peewee.CharField()
+    alpha_support = peewee.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.datetime.now()

@@ -59,7 +59,7 @@ class TickerController():
         expected_dt = self.get_expected_last_record_datettime()
         # get all scripts
         scripts = Script.select(Script.id, Script.symbol,
-                                Script.company_name)  # remove limit before move into production
+                                Script.company_name).where(Script.alpha_support == True)
         # Iterate through scripts and update the ticker data for each script
         for script in scripts:
             print('{}. {}'.format(script.id, script.symbol))
