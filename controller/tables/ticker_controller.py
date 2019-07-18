@@ -84,7 +84,6 @@ class TickerController():
                         compact_response = False
                     data = self.get_ticker_data(last_updated_at,
                                                 script.id, script.symbol, compact_response)
-                    print_json(data)
             else:  # no ticker available for the script so get full data and insert
                 older_datetime = datetime.strptime('2000 Jan 01 00:00:00',
                                                    DATE_TIME_FORMAT)
