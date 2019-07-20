@@ -18,3 +18,6 @@ class CliHandler(Cmd):
 
     def do_create(self, inp):
         controller.process(inp, 'create_table')
+
+    def do_backtest(self, inp):
+        controller.process(inp, "backtest")
