@@ -20,7 +20,7 @@ class ControllerMain():
             "script_info": self.script_info_controller.process,
             "ticker_5min": self.ticker_controller.process,
             "alpha_apikey": self.alpha_apikey_controller.process,
-            "backtest": self.strategy_controller.process,
+            "bt": self.strategy_controller.process,
         }
 
     def switcher_error(self, table, operation):

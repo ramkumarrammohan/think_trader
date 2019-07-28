@@ -11,7 +11,6 @@ class AlphaWrapper():
     def __init__(self):
         self.next_hit_time = datetime.datetime.now()
         self.base_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={sym}&interval=5min&apikey={key}&outputsize={size}'
-        print('Alpha api driver')
 
     def sleep_if_required(self):
         if datetime.datetime.now() > self.next_hit_time:

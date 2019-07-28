@@ -17,6 +17,7 @@ class AlphaApiKeyController():
         print("Unhandled case operation: {} found".format(operation))
 
     def process(self, input):
+        print('process input: {}'.format(input))
         func = self.process_switcher.get(input, None)
         if func:
             func()
