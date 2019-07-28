@@ -8,18 +8,22 @@ class StrategyBreakout_5Min(BaseModel):
     created_at = peewee.DateTimeField(default=datetime.datetime.now)
     updated_at = peewee.DateTimeField(default=datetime.datetime.now)
     script_id = peewee.ForeignKeyField(Script, backref='script', unique=True)
-
-    order_type = peewee.FixedCharField(max_length=5)  # LONG / SHORT
     date = peewee.DateField()
+    # entry criteria
     upper_cutoff_price = peewee.FloatField()
     lower_cutoff_price = peewee.FloatField()
-    entry_price = peewee.FloatField()
-    entry_time = peewee.DateTimeField()
-    max_negative_price_after_entry = peewee.FloatField()
-    max_positive_price_after_entry = peewee.FloatField()
-    max_negative_percent = peewee.FloatField()
-    max_positive_percent = peewee.FloatField()
-    transit_time_for_one_percent_gain = peewee.TimeField()
+    # buy prop
+    buy = peewee.BooleanField()
+    buy_entry_time = peewee.TimeField(null=True)
+    max_positive_after_buy_entry = peewee.FloatField()
+    max_negative_after_buy_entry = peewee.FloatField()
+    time_to_reach_one_percent_after_buy = peewee.TimeField(null=True)
+    # sell prop
+    sell = peewee.BooleanField()
+    sell_entry_time = peewee.DateTimeField(null=True)
+    max_positive_after_sell_entry = peewee.FloatField()
+    max_negative_after_sell_entry = peewee.FloatField()
+    time_to_reach_one_percent_after_sell = peewee.TimeField(null=True)
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.datetime.now()
@@ -28,5 +32,5 @@ class StrategyBreakout_5Min(BaseModel):
     class Meta:
         table_name = "strategy_breakout_5min"
         indexes = (
-            (('script_id', 'date', 'order_type'), True),
+            (('script_id', 'date'), True),
         )
