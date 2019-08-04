@@ -1,7 +1,6 @@
 {
   "python.pythonPath": "venv/bin/python3",
   "editor.formatOnSave": true,
-  "workbench.colorTheme": "Visual Studio Light",
   "comments.openPanel": "openOnSessionStart",
   "window.zoomLevel": -1
 }
