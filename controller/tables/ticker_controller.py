@@ -80,7 +80,7 @@ class TickerController():
                 else:
                     days_diff = expected_dt - last_updated_at
                     compact_response = True
-                    if days_diff.days > 2:
+                    if days_diff.days > 1:
                         compact_response = False
                     data = self.get_ticker_data(last_updated_at,
                                                 script.id, script.symbol, compact_response)
