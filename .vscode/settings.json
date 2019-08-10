@@ -1,8 +1,7 @@
 {
   "python.pythonPath": "venv/bin/python3",
   "editor.formatOnSave": true,
-  "code-runner.runInTerminal": true,
-  "code-runner.saveFileBeforeRun": true,
-  "workbench.colorTheme": "Default Light+",
-  "comments.openPanel": "openOnSessionStart"
+  "workbench.colorTheme": "Visual Studio Light",
+  "comments.openPanel": "openOnSessionStart",
+  "window.zoomLevel": -1
 }
