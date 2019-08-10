@@ -29,6 +29,6 @@ class ControllerMain():
     def process(self, table, operation):
         func = self.process_switcher.get(table, None)
         if func:
-            func(table)
+            func(operation)
         else:
             self.switcher_error(table, operation)
